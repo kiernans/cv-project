@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uniqid from 'uniqid';
 
 class Education extends Component {
     constructor() {
@@ -11,11 +12,14 @@ class Education extends Component {
             end: '',
             
             school: {
+                id: uniqid(),
                 name: '',
                 fieldofstudy: '',
                 start: '',
                 end: '',
             },
+
+            schools: [],
 
         };
     };
@@ -44,7 +48,9 @@ class Education extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
+            schools: this.state.schools.concat(this.state.school),
             school: {
+                id: uniqid(),
                 name: this.state.name,
                 fieldofstudy: this.state.fieldofstudy,
                 start: this.state.start,
@@ -57,8 +63,14 @@ class Education extends Component {
         });
     };
 
+    displayEducation = () => {
+        return this.state.schools.map((school) => {
+            return <li key={school.id}>school</li>;
+        });
+    };
+
     render() {
-        const { school, name, fieldofstudy, start, end } = this.state;
+        const { name, fieldofstudy, start, end } = this.state;
 
         return (
             <div>
@@ -96,10 +108,14 @@ class Education extends Component {
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Submit</button>
-                <h1>{JSON.stringify(school)}</h1>
+                <ul>
+                    {displayEducation}
+                </ul>
             </div>
         );
     };
 };
+
+
 
 export default Education;
