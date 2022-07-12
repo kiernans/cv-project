@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uniqid from 'uniqid';
+import DisplayEducation from "./DisplayEducation";
 
 class Education extends Component {
     constructor() {
@@ -48,7 +49,6 @@ class Education extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
-            schools: this.state.schools.concat(this.state.school),
             school: {
                 id: uniqid(),
                 name: this.state.name,
@@ -56,6 +56,9 @@ class Education extends Component {
                 start: this.state.start,
                 end: this.state.end,
             },
+
+            schools: this.state.schools.concat(this.state.school),
+
             name: '',
             fieldofstudy: '',
             start: '',
@@ -63,14 +66,9 @@ class Education extends Component {
         });
     };
 
-    displayEducation = () => {
-        return this.state.schools.map((school) => {
-            return <li key={school.id}>school</li>;
-        });
-    };
-
     render() {
-        const { name, fieldofstudy, start, end } = this.state;
+        const { schools, name, fieldofstudy, start, end } = this.state;
+        const today = new Date().toISOString().slice(0, 10)
 
         return (
             <div>
@@ -97,6 +95,8 @@ class Education extends Component {
                     value={start}
                     type='date'
                     id='startInput'
+                    min="2000-01-01"
+                    max={today}
                     />
 
                     <label>End:</label>
@@ -105,12 +105,14 @@ class Education extends Component {
                     value={end}
                     type='date'
                     id='endInput'
+                    min="2000-01-01"
+                    max={today}
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Submit</button>
-                <ul>
-                    {displayEducation}
-                </ul>
+                
+                <DisplayEducation schools={schools}/>
+
             </div>
         );
     };

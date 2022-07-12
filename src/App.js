@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Education from './components/Education';
+import Education from './components/education/Education';
+import Experience from './components/experience/Experience';
 import Information from './components/Information';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         <h1>CV Application</h1>
         <Information />
         <Education />
+        <Experience />
       </div>
     );
   };
