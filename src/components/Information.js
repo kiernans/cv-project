@@ -39,7 +39,7 @@ class Information extends Component {
     };
 
     render() {
-        const { info, name, email, phone } = this.state;
+        const { name, email, phone } = this.state;
 
         return (
             <div className='Information'>
