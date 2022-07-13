@@ -7,19 +7,13 @@ class Experience extends Component {
         super();
         
         this.state = {  
-            name: ''         ,
+            id: uniqid(),
+            name: '',
             position: '',
             tasks: '',
             start: '',
             end: '',
-            experience: {
-                id: uniqid(),
-                name: '',
-                position: '',
-                tasks: '',
-                start: '',
-                end: '',
-            },
+
             experiences: [],
         };
 
@@ -28,31 +22,23 @@ class Experience extends Component {
     };
 
     handleChange = (e) => {
-        const { name, position, tasks, start, end } = this.state;
         this.setState({
-            [e.target.name]: e.target.value,
-            experience: {
-                name: name,
-                position: position,
-                tasks: tasks,
-                start: start,
-                end: end,
-            },
+            [e.target.name]: e.target.value,            
         });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
+        const { id, name, position, tasks, start, end } = this.state;
+
         this.setState({
-            experiences: this.state.experiences.concat(this.state.experience),
-            experience: {
-                id: uniqid(),
-                name: '',
-                position: '',
-                tasks: '',
-                start: '',
-                end: '',
-            },
+            experiences: this.state.experiences.concat({ id, name, position, tasks, start, end }),
+            id: uniqid(),
+            name: '',
+            position: '',
+            tasks: '',
+            start: '',
+            end: '',
         });
     };
 
