@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>CV Application</h1>
+        <h1 className='title'>CV Application</h1>
         <Information />
         <Education />
         <Experience />

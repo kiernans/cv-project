@@ -43,6 +43,7 @@ class Information extends Component {
 
         return (
             <div className='Information'>
+                <h2>Personal Information</h2>
                 <form>
                     <label>Name</label>
                     <input
@@ -71,7 +72,7 @@ class Information extends Component {
                     id='phoneInput'
                     />
                 </form>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <button onClick={this.handleSubmit}>Save</button>
             </div>
         );
     };

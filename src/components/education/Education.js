@@ -48,6 +48,7 @@ class Education extends Component {
 
         return (
             <div className="Education">
+                <h2>Education</h2>
                 <form>
                     <label>School Name</label>
                     <input
@@ -89,7 +90,7 @@ class Education extends Component {
                     max={today}
                     />
                 </form>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <button onClick={this.handleSubmit}>Save</button>
                 
                 <DisplayEducation schools={schools}/>
 

@@ -17,12 +17,27 @@ body {
     align-items: center;
     font-family: ShadowsIntoLight;
     color: white;
-    background-color: navy;  
-    height: 100%;
-    margin: -8px;
-    width: 80rem;  
+    background-color: navy;
+    height: calc(100% + 600px);
+    padding: 0;
+    width: 80rem; 
+}
+
+.title {
+    font-size: 65px;
 }
 
 input {
-    width: 165px;
+    width: 185px;
+    border-radius: 10px;
+    height: 20px;
+    border: none;
+    text-align: center;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
 }

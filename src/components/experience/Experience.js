@@ -49,11 +49,12 @@ class Experience extends Component {
 
         return (
             <div className="Experience">
+                <h2>Work Experience</h2>
                 <form>
                     <label>Company Name</label>
                     <input
                     onChange={this.handleChange}
-                    name='name' 
+                    name='name'
                     value={name}
                     type='text'
                     id='nameInput'
@@ -99,7 +100,7 @@ class Experience extends Component {
                     max={today}
                     />
                 </form>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <button onClick={this.handleSubmit}>Save</button>
                 
                 <DisplayExperiences experiences={experiences}/>
 
