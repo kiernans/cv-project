@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../styles/Information.css'
 
 class Information extends Component {
     constructor() {
@@ -18,21 +19,10 @@ class Information extends Component {
     };
 
     handleChange = (e) => {
-        if(e.target.id === 'nameInput') {
-            this.setState({
-                name: e.target.value, 
-            });
-        } else if(e.target.id === 'emailInput') {
-            this.setState({
-                email: e.target.value, 
-            });
-        } else {
-            this.setState({
-                phone: e.target.value, 
-            });
-        }
-        
-    };
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -52,11 +42,12 @@ class Information extends Component {
         const { info, name, email, phone } = this.state;
 
         return (
-            <div>
+            <div className='Information'>
                 <form>
                     <label>Name</label>
                     <input
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
+                    name='name' 
                     value={name}
                     type='text'
                     id='nameInput'
@@ -65,6 +56,7 @@ class Information extends Component {
                     <label>Email</label>
                     <input
                     onChange={this.handleChange} 
+                    name='email'
                     value={email}
                     type='email'
                     id='emailInput'
@@ -73,13 +65,13 @@ class Information extends Component {
                     <label>Phone Number</label>
                     <input
                     onChange={this.handleChange} 
+                    name='phone'
                     value={phone}
                     type='text'
                     id='phoneInput'
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Submit</button>
-                <h1>{JSON.stringify(info)}</h1>
             </div>
         );
     };
