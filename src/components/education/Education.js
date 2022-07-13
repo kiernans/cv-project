@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from 'uniqid';
 import DisplayEducation from "./DisplayEducation";
+import "../../styles/Education.css"
 
 class Education extends Component {
     constructor() {
@@ -46,7 +47,7 @@ class Education extends Component {
         const today = new Date().toISOString().slice(0, 10)
 
         return (
-            <div>
+            <div className="Education">
                 <form>
                     <label>School Name</label>
                     <input

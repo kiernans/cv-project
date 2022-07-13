@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from 'uniqid';
 import DisplayExperiences from "./DisplayExperiences";
+import "../../styles/Experience.css"
 
 class Experience extends Component {
     constructor() {
@@ -47,7 +48,7 @@ class Experience extends Component {
         const today = new Date().toISOString().slice(0, 10)
 
         return (
-            <div>
+            <div className="Experience">
                 <form>
                     <label>Company Name</label>
                     <input

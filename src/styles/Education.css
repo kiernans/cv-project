@@ -1,0 +1,11 @@
+.Education {
+    display: flex;
+    gap: 10px;
+    width: 190px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input {
+    width: 50px;
+}
