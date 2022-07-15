@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DisplayEducation from "./DisplayEducation";
 import "../../styles/Education.css"
 
 class Education extends Component {
@@ -17,7 +16,6 @@ class Education extends Component {
 
     render() {
         const { name, fieldofstudy, start, end } = this.props.school;
-        const schools = this.props.schools;
         const today = new Date().toISOString().slice(0, 10)
 
         return (
@@ -65,9 +63,6 @@ class Education extends Component {
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Save</button>
-                
-                <DisplayEducation schools={schools}/>
-
             </div>
         );
     };

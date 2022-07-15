@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DisplayExperiences from "./DisplayExperiences";
 import "../../styles/Experience.css"
 
 class Experience extends Component {
@@ -17,7 +16,6 @@ class Experience extends Component {
     
     render() {
         const { name, position, tasks, start, end } = this.props.experience;
-        const experiences = this.props.experiences;
         const today = new Date().toISOString().slice(0, 10)
 
         return (
@@ -74,9 +72,6 @@ class Experience extends Component {
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Save</button>
-                
-                <DisplayExperiences experiences={experiences}/>
-
             </div>
         );
     };
