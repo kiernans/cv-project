@@ -2,44 +2,20 @@ import React, { Component } from "react";
 import '../styles/Information.css'
 
 class Information extends Component {
-    constructor() {
-        super();
-        
-        this.state = {
-            name: '',
-            email: '',
-            phone: '',
-            info: {
-                name: '',
-                email: '',
-                phone: ''
-            },
-
-        };
+    constructor(props) {
+        super(props);
     };
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    }
+        this.props.handleChange(e);
+    };
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.setState({
-            info: {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone,
-            },
-            name: '',
-            email: '',
-            phone: '',
-        });
+        this.props.handleSubmit(e);
     };
 
     render() {
-        const { name, email, phone } = this.state;
+        const { name, email, phone } = this.props;
 
         return (
             <div className='Information'>

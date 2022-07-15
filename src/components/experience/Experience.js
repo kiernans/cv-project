@@ -1,50 +1,23 @@
 import React, { Component } from "react";
-import uniqid from 'uniqid';
 import DisplayExperiences from "./DisplayExperiences";
 import "../../styles/Experience.css"
 
 class Experience extends Component {
-    constructor() {
-        super();
-        
-        this.state = {  
-            id: uniqid(),
-            name: '',
-            position: '',
-            tasks: '',
-            start: '',
-            end: '',
-
-            experiences: [],
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    constructor(props) {
+        super(props);
     };
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,            
-        });
+        this.props.handleChange(e);
     };
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const { id, name, position, tasks, start, end } = this.state;
-
-        this.setState({
-            experiences: this.state.experiences.concat({ id, name, position, tasks, start, end }),
-            id: uniqid(),
-            name: '',
-            position: '',
-            tasks: '',
-            start: '',
-            end: '',
-        });
+        this.props.handleSubmit(e);
     };
-
+    
     render() {
-        const { experiences, name, position, tasks, start, end } = this.state;
+        const { name, position, tasks, start, end } = this.props.experience;
+        const experiences = this.props.experiences;
         const today = new Date().toISOString().slice(0, 10)
 
         return (
@@ -54,7 +27,7 @@ class Experience extends Component {
                     <label>Company Name</label>
                     <input
                     onChange={this.handleChange}
-                    name='name'
+                    name='exName'
                     value={name}
                     type='text'
                     id='nameInput'
@@ -81,7 +54,7 @@ class Experience extends Component {
                     <label>Start:</label>
                     <input
                     onChange={this.handleChange} 
-                    name='start'
+                    name='exStart'
                     value={start}
                     type='date'
                     id='startInput'
@@ -92,7 +65,7 @@ class Experience extends Component {
                     <label>End:</label>
                     <input
                     onChange={this.handleChange} 
-                    name='end'
+                    name='exEnd'
                     value={end}
                     type='date'
                     id='endInput'

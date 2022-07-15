@@ -1,49 +1,23 @@
 import React, { Component } from "react";
-import uniqid from 'uniqid';
 import DisplayEducation from "./DisplayEducation";
 import "../../styles/Education.css"
 
 class Education extends Component {
-    constructor() {
-        super();
-        
-        this.state = {
-            id: uniqid(),
-            name: '',
-            fieldofstudy: '',
-            start: '',
-            end: '',
-            
-            schools: [],
-
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    constructor(props) {
+        super(props);
     };
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
+        this.props.handleChange(e);
     };
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const { id, name, fieldofstudy, start, end } = this.state;
-        this.setState({
-           schools: this.state.schools.concat({ id, name, fieldofstudy, start, end }),
-
-            id: uniqid(),
-            name: '',
-            fieldofstudy: '',
-            start: '',
-            end: '',
-        });
+        this.props.handleSubmit(e);
     };
 
     render() {
-        const { schools, name, fieldofstudy, start, end } = this.state;
+        const { name, fieldofstudy, start, end } = this.props.school;
+        const schools = this.props.schools;
         const today = new Date().toISOString().slice(0, 10)
 
         return (
@@ -53,7 +27,7 @@ class Education extends Component {
                     <label>School Name</label>
                     <input
                     onChange={this.handleChange}
-                    name='name' 
+                    name='edName' 
                     value={name}
                     type='text'
                     id='nameInput'
@@ -71,7 +45,7 @@ class Education extends Component {
                     <label>Start:</label>
                     <input
                     onChange={this.handleChange}
-                    name='start' 
+                    name='edStart' 
                     value={start}
                     type='date'
                     id='startInput'
@@ -82,7 +56,7 @@ class Education extends Component {
                     <label>End:</label>
                     <input
                     onChange={this.handleChange}
-                    name='end' 
+                    name='edEnd' 
                     value={end}
                     type='date'
                     id='endInput'

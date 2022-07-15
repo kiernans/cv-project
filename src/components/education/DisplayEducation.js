@@ -9,16 +9,10 @@ const DisplayEducation = (props) => {
                 return (
                     <div>
                         <li key={school.id}>
-                        {school.name}
-                        </li>
-                        <li key={school.id}>
-                        {school.fieldofstudy}
-                        </li>
-                        <li key={school.id}>
-                        {school.start}
-                        </li>
-                        <li key={school.id}>
-                        {school.end}
+                        <p>{school.name}</p>
+                        <p>{school.fieldofstudy}</p>
+                        <p>{school.start}</p>
+                        <p>{school.end}</p>
                         </li>
                     </div>
                 )})}

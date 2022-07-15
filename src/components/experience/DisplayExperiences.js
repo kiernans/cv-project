@@ -9,11 +9,11 @@ const DisplayExperiences = (props) => {
                 return (
                     <div>
                         <li key={experience.id}>
-                            <div>{experience.name}</div>
-                            <div>{experience.position}</div>
-                            <div>{experience.tasks}</div>
-                            <div>{experience.start}</div>
-                            <div>{experience.end}</div>
+                            <p>{experience.name}</p>
+                            <p>{experience.position}</p>
+                            <p>{experience.tasks}</p>
+                            <p>{experience.start}</p>
+                            <p>{experience.end}</p>
                         </li>
                     </div>
                 )})}
