@@ -44,8 +44,10 @@ class Information extends Component {
                     onChange={this.handleChange} 
                     name='phone'
                     value={phone}
-                    type='text'
+                    type='tel'
+                    pattern="[0-9]{3}-[0-9]{3}[0-9]{4}"
                     id='phoneInput'
+                    required
                     />
                 </form>
                 <button onClick={this.handleSubmit}>Save</button>
