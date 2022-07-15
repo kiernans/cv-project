@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Information from './components/Information';
+import Resume from './components/Resume';
 import uniqid from 'uniqid';
 import './styles/App.css';
 
@@ -33,7 +34,7 @@ class App extends Component {
 
       experiences: [],
 
-      isPreview: false,
+      isPreview: true,
     };
   };
 
@@ -82,7 +83,15 @@ class App extends Component {
         exStart: '',
         exEnd: '',
     });
-};
+};  
+
+    handlePreviewClicked = (e) => {
+      e.preventDefault();
+      const prev = this.state.isPreview;
+      this.setState({
+        isPreview: !prev,
+      });
+    };
 
   render() {
     const { name, email, phone } = this.state;
@@ -97,17 +106,29 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className='title'>CV Application</h1>
-        <Information information={information}
-                      handleChange={this.handleChange}
-                      handleSubmit={this.handleInformationSubmit}/>
-        <Education schools={this.state.schools}
-                   school={school} 
-                   handleChange={this.handleChange}
-                   handleSubmit={this.handleEducationSubmit}/>
-        <Experience experiences={this.state.experiences} 
-                    experience={experience} 
-                    handleChange={this.handleChange} 
-                    handleSubmit={this.handleExperienceSubmit}/>
+        {!this.state.isPreview && 
+            <div>
+              <Information information={information}
+                            handleChange={this.handleChange}
+                            handleSubmit={this.handleInformationSubmit}/>
+              <Education schools={this.state.schools}
+                          school={school} 
+                          handleChange={this.handleChange}
+                          handleSubmit={this.handleEducationSubmit}/>
+              <Experience experiences={this.state.experiences} 
+                          experience={experience} 
+                          handleChange={this.handleChange} 
+                          handleSubmit={this.handleExperienceSubmit}/>
+            </div>
+        }
+
+        {this.state.isPreview && 
+            <Resume information={this.state.info}
+                    schools={this.state.schools}
+                    experiences={this.state.experiences}
+                    />
+        }
+        <button className='Preview' onClick={this.handlePreviewClicked}>Preview</button>
       </div>
     );
   };
