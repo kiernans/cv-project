@@ -4,19 +4,16 @@ const DisplayEducation = (props) => {
     const { schools } = props;
 
     return (
-        <ul>
+        <div>
             {schools.map((school) => {
                 return (
-                    <div>
-                        <li key={school.id}>
-                        <p>{school.name}</p>
-                        <p>{school.fieldofstudy}</p>
-                        <p>{school.start}</p>
-                        <p>{school.end}</p>
-                        </li>
+                    <div key={school.id}>
+                        <h3>{school.name}</h3>
+                        <p className="duration">{school.start} - {school.end}</p>
+                        <p className="fieldofstudy">{school.fieldofstudy}</p>
                     </div>
                 )})}
-        </ul>
+        </div>
     );
 };
 

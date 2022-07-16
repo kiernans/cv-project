@@ -4,20 +4,18 @@ const DisplayExperiences = (props) => {
     const { experiences } = props;
 
     return (
-        <ul>
+        <div>
             {experiences.map((experience) => {
                 return (
-                    <div>
-                        <li key={experience.id}>
-                            <p>{experience.name}</p>
+                    <div key={experience.id}>
+                            <h3>{experience.name}</h3>
+                            <p className="duration">{experience.start} - {experience.end}</p>
                             <p>{experience.position}</p>
-                            <p>{experience.tasks}</p>
-                            <p>{experience.start}</p>
-                            <p>{experience.end}</p>
-                        </li>
+                            <p className="tasks">{experience.tasks}</p>
                     </div>
                 )})}
-        </ul>
+        </div>
+            
     );
 };
 
