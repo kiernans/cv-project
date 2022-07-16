@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Information from './components/Information';
@@ -6,132 +6,115 @@ import Resume from './components/Resume';
 import uniqid from 'uniqid';
 import './styles/App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
 
-    this.state = {
+  const [info, setInfo] = 
+    useState({
       name: '',
       email: '',
-      phone: '',
+      phone: ''
+    });
 
-      info: {},
-
-      edId: uniqid(),
-      edName: '',
+  const [school, setSchool] = 
+    useState({
+      id: uniqid(),
+      name: '',
       fieldofstudy: '',
-      edStart: '',
-      edEnd: '',
+      start: '',
+      end: ''
+    });
 
-      schools: [],
+  const [schools, setSchools] = useState([]);
 
-      exId: uniqid(),
-      exName: '',
+  const [experience, setExperience] = 
+    useState({
+      id: uniqid(),
+      name: '',
       position: '',
       tasks: '',
-      exStart: '',
-      exEnd: '',
-
-      experiences: [],
-
-      isPreview: true,
-    };
-  };
-
-  handleChange = (e) => {
-    this.setState({
-        [e.target.name]: e.target.value,            
+      start: '',
+      end: ''
     });
+  const [experiences, setExperiences] = useState([]);
+
+  const [isPreview, setIsPreview] = useState(false);
+
+  const handleInfoChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
-  handleInformationSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, phone } = this.state;
-    this.setState({
-      info: { name, email, phone },
+  const handleEducationChange = (e) => {
+    setSchool({ ...school, [e.target.name]: e.target.value });
+  };
 
+  const handleExperienceChange = (e) => {
+    setExperience({ ...experience, [e.target.name]: e.target.value });
+  };
+  
+  const handleInfoSubmit = (e) => {
+    e.preventDefault();
+
+  };
+
+  const handleEducationSubmit = (e) => {
+    e.preventDefault();
+    setSchools(schools.concat(school));
+    setSchool({
+      id: uniqid(),
       name: '',
-      email: '',
-      phone: '',
+      fieldofstudy: '',
+      start: '',
+      end: ''
     });
   };
 
-  handleEducationSubmit = (e) => {
+  const handleExperienceSubmit = (e) => {
     e.preventDefault();
-    const { edId: id, edName: name, fieldofstudy, edStart: start, edEnd: end } = this.state;
-    this.setState({
-       schools: this.state.schools.concat({ id, name, fieldofstudy, start, end }),
+    setExperiences(experiences.concat(experience));
 
-        edId: uniqid(),
-        edName: '',
-        fieldofstudy: '',
-        edStart: '',
-        edEnd: '',
+    setExperience({
+      id: uniqid(),
+      name: '',
+      position: '',
+      tasks: '',
+      start: '',
+      end: ''
     });
-};
+  };  
 
-  handleExperienceSubmit = (e) => {
-    e.preventDefault();
-    const { exId: id, exName: name, position, tasks, exStart: start, exEnd: end } = this.state;
-
-    this.setState({
-        experiences: this.state.experiences.concat({ id, name, position, tasks, start, end }),
-        exId: uniqid(),
-        exName: '',
-        position: '',
-        tasks: '',
-        exStart: '',
-        exEnd: '',
-    });
-};  
-
-    handlePreviewClicked = (e) => {
+  const handlePreviewClicked = (e) => {
       e.preventDefault();
-      const prev = this.state.isPreview;
-      this.setState({
-        isPreview: !prev,
-      });
+      setIsPreview(!isPreview);
     };
-
-  render() {
-    const { name, email, phone } = this.state;
-    const information = { name, email, phone };
-
-    const { exId, exName, position, tasks, exStart, exEnd } = this.state;
-    const experience = { id: exId, name: exName, position, tasks, start: exStart, end: exEnd };
-
-    const { edId, edName, fieldofstudy, edStart, edEnd } = this.state;
-    const school = { id: edId, name: edName, fieldofstudy, start: edStart, end: edEnd };
 
     return (
       <div className="App">
         <h1 className='title'>CV Application</h1>
-        {!this.state.isPreview && 
+        {!isPreview && 
             <div>
-              <Information information={information}
-                            handleChange={this.handleChange}
-                            handleSubmit={this.handleInformationSubmit}/>
-              <Education schools={this.state.schools}
+              <Information information={info}
+                            handleChange={handleInfoChange}
+                            handleSubmit={handleInfoSubmit}/>
+              <Education schools={schools}
                           school={school} 
-                          handleChange={this.handleChange}
-                          handleSubmit={this.handleEducationSubmit}/>
-              <Experience experiences={this.state.experiences} 
+                          handleChange={handleEducationChange}
+                          handleSubmit={handleEducationSubmit}/>
+              <Experience experiences={experiences} 
                           experience={experience} 
-                          handleChange={this.handleChange} 
-                          handleSubmit={this.handleExperienceSubmit}/>
+                          handleChange={handleExperienceChange} 
+                          handleSubmit={handleExperienceSubmit}/>
             </div>
         }
 
-        {this.state.isPreview && 
-            <Resume information={this.state.info}
-                    schools={this.state.schools}
-                    experiences={this.state.experiences}
+        {isPreview && 
+            <Resume information={info}
+                    schools={schools}
+                    experiences={experiences}
                     />
         }
-        <button className='Preview' onClick={this.handlePreviewClicked}>Preview</button>
+        <button className='Preview' onClick={handlePreviewClicked}>Preview</button>
       </div>
     );
   };
-}
 
 export default App;
